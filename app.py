@@ -41,7 +41,7 @@ def Grid():
         with solara.Row(): 
             for j in range(len(state[0])):
                 Cell(state[i][j])
-    solara.Info(f"Time so far : {time_spent.value}")    
+    solara.Info(f"Time left : {time_spent.value}")    
     solara.Success(f"Points : {points.value}")    
 
 @solara.component        
@@ -69,13 +69,15 @@ def Page():
         start_time = time.time()
         print(f"Thread started")
         i = 0
+        total_time = 60
         while(continue_thread): 
             print(f"*", end=" ")
             sleep(1)
-            time_spent.set(int(time.time() - start_time))
+            time_spent_so_far = int(time.time() - start_time) 
+            time_spent.set(total_time - time_spent_so_far)
             if i%2 == 0: 
                 refresh()
-            if (i+1)%10==0: 
+            if (i+1)%total_time==0: 
                 break 
             i += 1
         refresh_state(state, how_many_moles=0)            
