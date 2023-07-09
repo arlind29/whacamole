@@ -26,7 +26,6 @@ def Cell(cell_value):
             return 
         cell_value.set("-")
         points.set(points.value + 1)
-    #print("*", cell_value.value)
     solara.Button(cell_value.value, \
         on_click =lambda:  collect_points(cell_value),
         style= "font-size: 16pt"
@@ -71,7 +70,6 @@ def Page():
         i = 0
         total_time = 60
         while(continue_thread): 
-            print(f"*", end=" ")
             sleep(1)
             time_spent_so_far = int(time.time() - start_time) 
             time_spent.set(total_time - time_spent_so_far)
